@@ -1,29 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
-import {Col, Row} from 'reactstrap';
-import { BrowserRouter } from 'react-router-dom';
-
+import {Route, Routes} from 'react-router-dom';
+import { LoginPage } from "./components/pages/Login";
+import {LogbookPage} from "./components/pages/LogbookPage";
+import {ChakraProvider} from '@chakra-ui/react'
+import React from "react";
 function App() {
   return (
-    <div className="container-fluid">
-      <Row>
-          <Col>
-              Bookmark
-          </Col>
-          <Col>
-              Topic
-          </Col>
-          <Col>
-              Entry
-          </Col>
-          <Col>
-              Entry Details
-          </Col>
-          <Col>
-              Calendar
-          </Col>
-      </Row>
-    </div>
+  <ChakraProvider>
+    <Routes>
+      <Route path="/" element={<LogbookPage />} />
+      <Route path="/login" element={<LoginPage />} />
+    </Routes>
+  </ChakraProvider>
   );
 }
 

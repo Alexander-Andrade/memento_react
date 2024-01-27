@@ -1,27 +1,29 @@
 import React from 'react';
-import {Button, Flex, IconButton, Menu, MenuButton, MenuItem, MenuList, Select, Text} from '@chakra-ui/react'
-import {COLOR_DARKER, COLOR_LIGHT, COLOR_LIGHTER} from "../../constants/Colors";
-import {AddIcon, DeleteIcon, EditIcon, HamburgerIcon} from "@chakra-ui/icons";
+import {Flex, Text} from '@chakra-ui/react'
+import {COLOR_DARK, COLOR_DARKER, COLOR_LIGHTER} from "../../constants/Colors";
+import {BookmarkItemMenu} from "./BookmarkItemMenu";
+import {useNavigate} from "react-router-dom";
+import {useTopicsStore} from "../../store/Topics";
 
-export const BookmarkItem = ({ item }) => {
+export const BookmarkItem = ({ item, selected, setSelected }) => {
+  const navigate = useNavigate();
+  const fetchTopics = useTopicsStore((state) => state.fetch)
+  const color = (selected === item.id) ? COLOR_DARK : COLOR_DARKER
+
+  const onSelect = async () => {
+    setSelected(item.id)
+    navigate(`../bookmarks\\${item.id}`, { replace: true })
+    fetchTopics(item.id)
+  };
+
   return (
-        <Flex flexDirection='row' justifyContent='space-between' bg={COLOR_DARKER}>
-            <Flex flexDirection='column' justifyContent='center' h='60px' fontWeight='bold'>
-          <Text color={COLOR_LIGHTER} pl={3} fontSize='2xl' textAlign='left'>{item.title}</Text>
-            </Flex>
-             <Flex flexDirection='column' justifyContent='center' h='60px'>
-          <Menu colorScheme='teal' variant='ghost'>
-              <MenuButton as={IconButton} aria-label='Options' icon={<HamburgerIcon />} variant='ghost' colorScheme='teal'>
-              </MenuButton>
-              <MenuList >
-                <MenuItem color='teal' icon={<EditIcon />}>Edit</MenuItem>
-                <MenuItem color='teal' icon={<DeleteIcon />}>Delete</MenuItem>
-              </MenuList>
-            </Menu>
-          {/*       <IconButton aria-label='Add Bookmark' size='lg' colorScheme='teal'  variant='ghost' icon={<EditIcon/>}>*/}
-          {/*<option value='option1'>Option 1</option>*/}
-          {/*</IconButton>*/}
-             </Flex>
-      </Flex>
+    <Flex flexDirection='row' justifyContent='space-between' bg={color} onClick={onSelect}>
+    <Flex flexDirection='column' justifyContent='center' h='60px' fontWeight='bold'>
+        <Text color={COLOR_LIGHTER} pl={3} fontSize='2xl' textAlign='left'>{item.title}</Text>
+    </Flex>
+     <Flex flexDirection='column' justifyContent='center' h='60px'>
+        <BookmarkItemMenu item={item}/>
+     </Flex>
+    </Flex>
   );
 }

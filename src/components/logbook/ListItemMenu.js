@@ -6,15 +6,12 @@ import {
     MenuList, useDisclosure
 } from '@chakra-ui/react'
 import {DeleteIcon, EditIcon, HamburgerIcon} from "@chakra-ui/icons";
-import {useBookmarksStore} from "../../store/Bookmarks";
-import {deleteBookmark, updateBookmark} from "../../queries/Bookmarks";
-import {InputModal} from "../InputModal";
-import {DeleteModal} from "../DeleteModal";
+import {InputModal} from "./InputModal";
+import {DeleteModal} from "./DeleteModal";
 
-export const BookmarkItemMenu = ({ item }) => {
+export const ListItemMenu = ({ itemId, field, fetchList, collectionName, updateFunc, deleteFunc }) => {
     const editDisclosure = useDisclosure()
     const deleteDisclosure = useDisclosure()
-    const fetchBookmarks = useBookmarksStore((state) => state.fetch)
 
     return (
     <>
@@ -28,23 +25,23 @@ export const BookmarkItemMenu = ({ item }) => {
         </Menu>
 
         <InputModal
-            key={`bookmark-input-modal-${item.id}`}
-            clickFunc={(input)=> updateBookmark(item.id, input)}
-            initialInput={item.title}
-            fetchCollection={fetchBookmarks}
+            key={`${collectionName}-input-modal-${itemId}`}
+            clickFunc={updateFunc}
+            initialInput={field}
+            fetchCollection={fetchList}
             isOpen={editDisclosure.isOpen}
             onClose={editDisclosure.onClose}
-            header='Update Bookmark'
-            formLabel='Name'
+            header={`Update ${collectionName}`}
             buttonText='Edit'
         />
         <DeleteModal
-            clickFunc={()=> deleteBookmark(item.id)}
-            fetchCollection={fetchBookmarks}
+            key={`${collectionName}-delete-modal-${itemId}`}
+            clickFunc={deleteFunc}
+            fetchCollection={fetchList}
             isOpen={deleteDisclosure.isOpen}
             onClose={deleteDisclosure.onClose}
-            header='Delete Bookmark'
-            body={item.title}
+            header={`Delete ${collectionName}`}
+            body={field}
             buttonText='Delete'
         />
     </>

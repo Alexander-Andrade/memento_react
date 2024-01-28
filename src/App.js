@@ -9,8 +9,8 @@ function App() {
   <ChakraProvider>
     <Routes>
       <Route path="/" exact element={<LogbookPage />} />
-      <Route path="/bookmarks/:bookmarkId" element={<LogbookPage />} />
-      <Route path="/bookmarks/:bookmarkId/topics/:topicId" element={<LogbookPage />} />
+      {/*<Route path="/bookmarks/:bookmarkId" element={<LogbookPage />} />*/}
+      {/*<Route path="/bookmarks/:bookmarkId/topics/:topicId" element={<LogbookPage />} />*/}
       <Route path="/login" element={<LoginPage />} />
     </Routes>
   </ChakraProvider>

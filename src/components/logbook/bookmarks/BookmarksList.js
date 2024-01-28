@@ -6,7 +6,8 @@ import {BookmarkItem} from "./BookmarkItem";
 import { useNavigate } from 'react-router-dom';
 
 export const BookmarksList = () => {
-    const [selected, setSelected] = useState(null)
+    const selectedId = useBookmarksStore((state) => state.selectedId)
+    const setSelectedId = useBookmarksStore((state) => state.setSelectedId)
 
     const bookmarks = useBookmarksStore((state) => state.bookmarks)
     const fetchBookmarks = useBookmarksStore((state) => state.fetch)
@@ -31,7 +32,7 @@ export const BookmarksList = () => {
           >
       {
         bookmarks.map((item) => (
-            <BookmarkItem item={item} key={`bookmark-item-${item.id}`} selected={selected} setSelected={setSelected}/>
+            <BookmarkItem item={item} key={`bookmark-item-${item.id}`} selected={selectedId} setSelected={setSelectedId}/>
         ))
       }
       </VStack>

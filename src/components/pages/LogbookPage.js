@@ -7,12 +7,11 @@ import {Flex, Box, Divider} from '@chakra-ui/react'
 import {BookmarkCreateButton} from "../logbook/bookmarks/BookmarkCreateButton";
 import {TopicCreateButton} from "../logbook/topics/TopicCreateButton";
 import {TopicsList} from "../logbook/topics/TopicsList";
-import {useParams} from "react-router-dom";
+import {useBookmarksStore} from "../store/Bookmarks";
 
 export const LogbookPage = () => {
-    const { bookmarkId } = useParams();
-    const topicCreateDisabled = !bookmarkId
-    debugger
+    const selectedBookmarkId = useBookmarksStore((state) => state.selectedId)
+
     return (
         <Flex justify="center" minHeight='100vh'  align="center" flexDirection='row' alignItems='stretch'
         >
@@ -24,7 +23,7 @@ export const LogbookPage = () => {
                 <Divider orientation='vertical' />
             </Box>
             <Box flex='1'>
-                <TopicCreateButton isDisabled={topicCreateDisabled}/>
+                <TopicCreateButton isDisabled={!selectedBookmarkId}/>
                 <TopicsList/>
             </Box>
             <Box>

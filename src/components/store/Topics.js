@@ -4,6 +4,7 @@ import {fetchNext} from "../queries/Pagination";
 
 export const useTopicsStore = create((set, get) => ({
   topics: [],
+  selectedId: null,
   next: null,
 
   fetch: async (bookmarkId) => {
@@ -15,4 +16,7 @@ export const useTopicsStore = create((set, get) => ({
       set((state)=> ({ topics: [...state.topics, ...response.data.results], next: response.data.next }))
   },
   destroyAll: () => set({ topics: [] }),
+
+  setSelectedId: (id) => set({ selectedId: id }),
+  resetSelectedId: () => set({ selectedId: null }),
 }))

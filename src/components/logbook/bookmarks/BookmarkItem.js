@@ -9,10 +9,12 @@ export const BookmarkItem = ({ item, selected, setSelected }) => {
   const navigate = useNavigate();
   const fetchTopics = useTopicsStore((state) => state.fetch)
   const color = (selected === item.id) ? COLOR_DARK : COLOR_DARKER
+  const resetSelectedTopicId = useTopicsStore((state) => state.resetSelectedId)
 
   const onSelect = async () => {
     setSelected(item.id)
-    navigate(`../bookmarks\\${item.id}`, { replace: true })
+    // navigate(`../bookmarks\\${item.id}`, { replace: true })
+    resetSelectedTopicId()
     fetchTopics(item.id)
   };
 

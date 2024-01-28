@@ -10,7 +10,7 @@ export const ListItem = ({ itemId, field, selected, setSelected, fetchList, coll
 
   const onSelect = async () => {
     setSelected(itemId)
-    navigate(navigatePath)
+    // navigate(navigatePath)
   };
 
   return (

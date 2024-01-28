@@ -15,9 +15,11 @@ export const TopicsList = () => {
   const setSelectedId = useTopicsStore((state) => state.setSelectedId)
   const bookmarkId = useBookmarksStore((state) => state.selectedId)
   const fetchEntries = useEntriesStore((state) => state.fetch)
+  const resetSelectedEntryId = useEntriesStore((state) => state.resetSelectedId)
 
   const onSelect = async (itemId) => {
     setSelectedId(itemId)
+    resetSelectedEntryId()
     fetchEntries(itemId)
   };
 

@@ -8,9 +8,13 @@ import {BookmarkCreateButton} from "../logbook/bookmarks/BookmarkCreateButton";
 import {TopicCreateButton} from "../logbook/topics/TopicCreateButton";
 import {TopicsList} from "../logbook/topics/TopicsList";
 import {useBookmarksStore} from "../store/Bookmarks";
+import {EntryCreateButton} from "../logbook/entries/EntryCreateButton";
+import {EntriesList} from "../logbook/entries/EntryList";
+import {useTopicsStore} from "../store/Topics";
 
 export const LogbookPage = () => {
     const selectedBookmarkId = useBookmarksStore((state) => state.selectedId)
+    const selectedTopicId = useTopicsStore((state) => state.selectedId)
 
     return (
         <Flex justify="center" minHeight='100vh'  align="center" flexDirection='row' alignItems='stretch'
@@ -30,7 +34,8 @@ export const LogbookPage = () => {
                 <Divider orientation='vertical' />
             </Box>
             <Box flex='1'>
-              Column
+                <EntryCreateButton isDisabled={!selectedTopicId}/>
+                <EntriesList/>
             </Box>
         </Flex>
     )

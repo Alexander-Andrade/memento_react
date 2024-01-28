@@ -1,17 +1,10 @@
 import React from 'react';
 import {Flex, Text} from '@chakra-ui/react'
 import {COLOR_DARK, COLOR_DARKER, COLOR_LIGHTER} from "../constants/Colors";
-import {useNavigate} from "react-router-dom";
 import {ListItemMenu} from "./ListItemMenu";
 
-export const ListItem = ({ itemId, field, selected, setSelected, fetchList, collectionName, updateFunc, deleteFunc, navigatePath }) => {
-  const navigate = useNavigate();
+export const ListItem = ({ itemId, field, selected, onSelect, fetchList, collectionName, updateFunc, deleteFunc, navigatePath }) => {
   const color = (selected === itemId) ? COLOR_DARK : COLOR_DARKER
-
-  const onSelect = async () => {
-    setSelected(itemId)
-    // navigate(navigatePath)
-  };
 
   return (
     <Flex flexDirection='row' justifyContent='space-between' bg={color} onClick={onSelect}>

@@ -1,20 +1,19 @@
-import React, {useState} from 'react';
 import {
     Flex,
     IconButton,
     useDisclosure
 } from '@chakra-ui/react'
 import {AddIcon} from "@chakra-ui/icons";
-import {createTopic} from "../../queries/Topics";
+import {createEntry} from "../../queries/Entries";
 import {useTopicsStore} from "../../store/Topics";
 import {InputModal} from "../InputModal";
-import {useBookmarksStore} from "../../store/Bookmarks";
+import {useEntriesStore} from "../../store/Entries";
 
 
-export const TopicCreateButton = ({isDisabled}) => {
+export const EntryCreateButton = ({isDisabled}) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const fetchTopics = useTopicsStore((state) => state.fetch)
-  const bookmarkId = useBookmarksStore((state) => state.selectedId)
+  const fetchEntries = useEntriesStore((state) => state.fetch)
+  const topicId = useTopicsStore((state) => state.selectedId)
 
   return (
     <>
@@ -23,12 +22,12 @@ export const TopicCreateButton = ({isDisabled}) => {
     </Flex>
     <InputModal
         key={`topic-input-modal`}
-        clickFunc={(input) => createTopic(bookmarkId, input) }
-        fetchCollection={()=> fetchTopics(bookmarkId) }
+        clickFunc={(input) => createEntry(topicId, input) }
+        fetchCollection={()=> fetchEntries(topicId) }
         isOpen={isOpen}
         onClose={onClose}
-        header='Create Topic'
-        formLabel='Name'
+        header='Create Entry'
+        formLabel='Title'
         buttonText='Create'
     />
     </>

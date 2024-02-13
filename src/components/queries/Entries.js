@@ -6,6 +6,11 @@ export const fetchEntries = (topicId) => {
    return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/topics/${topicId}/entries/`, { headers })
 }
 
+export const fetchEntry = (topicId, id) => {
+   const headers =  getAuthHeader()
+   return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/topics/${topicId}/entries/${id}/`, { headers })
+}
+
 export const createEntry = (topicId, title) => {
    let authHeader =  getAuthHeader()
    const headers = { ...authHeader, 'Content-Type': 'multipart/form-data' }

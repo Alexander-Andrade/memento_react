@@ -2,7 +2,7 @@
 import './LogbookPage.css';
 // import {useBookmarksStore} from "../store/Bookmarks";
 import {BookmarksList} from "../logbook/bookmarks/BookmarksList";
-import {Flex, Box, Divider} from '@chakra-ui/react'
+import {Flex, Box, Divider, Text, IconButton} from '@chakra-ui/react'
 
 import {BookmarkCreateButton} from "../logbook/bookmarks/BookmarkCreateButton";
 import {TopicCreateButton} from "../logbook/topics/TopicCreateButton";
@@ -11,6 +11,9 @@ import {useBookmarksStore} from "../store/Bookmarks";
 import {EntryCreateButton} from "../logbook/entries/EntryCreateButton";
 import {EntriesList} from "../logbook/entries/EntryList";
 import {useTopicsStore} from "../store/Topics";
+import {EntityDetail} from "../logbook/entries/EntityDetail";
+import {AddIcon, EditIcon} from "@chakra-ui/icons";
+import {EntryEditButton} from "../logbook/entries/EntryEditButton";
 
 export const LogbookPage = () => {
     const selectedBookmarkId = useBookmarksStore((state) => state.selectedId)
@@ -20,7 +23,7 @@ export const LogbookPage = () => {
         <Flex justify="center" minHeight='100vh'  align="center" flexDirection='row' alignItems='stretch'
         >
             <Box flex='1'>
-                <BookmarkCreateButton />
+                <BookmarkCreateButton/>
                 <BookmarksList/>
             </Box>
             <Box>
@@ -36,6 +39,19 @@ export const LogbookPage = () => {
             <Box flex='1'>
                 <EntryCreateButton isDisabled={!selectedTopicId}/>
                 <EntriesList/>
+            </Box>
+            <Box>
+                <Divider orientation='vertical' />
+            </Box>
+            <Box flex='1'>
+                <EntryEditButton />
+                <EntityDetail/>
+            </Box>
+            <Box>
+                <Divider orientation='vertical' />
+            </Box>
+            <Box flex='1'>
+                <Text width={'40vw'}>Calendar Here</Text>
             </Box>
         </Flex>
     )

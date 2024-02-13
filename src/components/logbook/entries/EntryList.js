@@ -14,10 +14,11 @@ export const EntriesList = () => {
   const selectedId = useEntriesStore((state) => state.selectedId)
   const setSelectedId = useEntriesStore((state) => state.setSelectedId)
   const topicId = useTopicsStore((state) => state.selectedId)
+  const storeEntry = useEntriesStore((state) => state.storeEntry)
 
   const onSelect = async (itemId) => {
     setSelectedId(itemId)
-    // fetchEntries(itemId)
+    storeEntry(topicId, itemId)
   };
 
   return (

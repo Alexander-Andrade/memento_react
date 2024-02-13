@@ -1,10 +1,11 @@
 import { create } from 'zustand'
-import {fetchEntries} from "../queries/Entries";
+import {fetchEntries, fetchEntry} from "../queries/Entries";
 import {fetchNext} from "../queries/Pagination";
 
 export const useEntriesStore = create((set, get) => ({
   entries: [],
   selectedId: null,
+  entry: null,
   next: null,
 
   fetch: async (topicId) => {
@@ -19,4 +20,9 @@ export const useEntriesStore = create((set, get) => ({
 
   setSelectedId: (id) => set({ selectedId: id }),
   resetSelectedId: () => set({ selectedId: null }),
+  storeEntry: async (topicId, id) => {
+    const response = await fetchEntry(topicId, id)
+    set({ entry: response.data })
+  },
+  resetEntry: () => set({ entry: null })
 }))

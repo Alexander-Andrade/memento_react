@@ -24,5 +24,6 @@ export const useEntriesStore = create((set, get) => ({
     const response = await fetchEntry(topicId, id)
     set({ entry: response.data })
   },
-  resetEntry: () => set({ entry: null })
+  resetEntry: () => set({ entry: null }),
+  resetEntries: () => set({ entries: [], selectedId: null, entry: null })
 }))

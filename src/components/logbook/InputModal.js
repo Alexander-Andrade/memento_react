@@ -13,7 +13,9 @@ export const InputModal = ({ clickFunc, fetchCollection, isOpen, onClose, initia
     const [input, setInput] = useState(initialInput)
     const initialRef = React.useRef(null)
 
-    const onClick = async () => {
+    const onClick = async (event) => {
+        event.preventDefault()
+        event.stopPropagation()
         onClose()
         await clickFunc(input)
         setInput('')
@@ -25,22 +27,24 @@ export const InputModal = ({ clickFunc, fetchCollection, isOpen, onClose, initia
     return (
     <Modal isOpen={isOpen} onClose={onClose} initialFocusRef={initialRef}>
       <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>{header}</ModalHeader>
-          <ModalCloseButton />
+      <ModalContent>
+        <ModalHeader>{header}</ModalHeader>
+        <ModalCloseButton/>
+        <form onSubmit={onClick}>
           <ModalBody>
-              <FormControl>
-                  <FormLabel>{formLabel}</FormLabel>
-                  <Input ref={initialRef} value={input} onChange={handleInputChange} size='lg'/>
-              </FormControl>
+            <FormControl>
+              <FormLabel>{formLabel}</FormLabel>
+              <Input ref={initialRef} value={input} onChange={handleInputChange} size='lg'/>
+            </FormControl>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme='teal' mr={3} onClick={onClick}>
+            <Button type='submit' colorScheme='teal' mr={3}>
               {buttonText}
             </Button>
           </ModalFooter>
-        </ModalContent>
+        </form>
+      </ModalContent>
     </Modal>
-    );
+);
 }

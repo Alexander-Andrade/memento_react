@@ -2,19 +2,19 @@ import React from 'react';
 import {Flex, Text} from '@chakra-ui/react'
 import {COLOR_DARK, COLOR_DARKER, COLOR_LIGHTER} from "../../constants/Colors";
 import {BookmarkItemMenu} from "./BookmarkItemMenu";
-import {useNavigate} from "react-router-dom";
 import {useTopicsStore} from "../../store/Topics";
+import {useEntriesStore} from "../../store/Entries";
 
 export const BookmarkItem = ({ item, selected, setSelected }) => {
-  const navigate = useNavigate();
   const fetchTopics = useTopicsStore((state) => state.fetch)
   const color = (selected === item.id) ? COLOR_DARK : COLOR_DARKER
   const resetSelectedTopicId = useTopicsStore((state) => state.resetSelectedId)
+  const resetEntries = useEntriesStore((state) => state.resetEntries)
 
   const onSelect = async () => {
     setSelected(item.id)
-    // navigate(`../bookmarks\\${item.id}`, { replace: true })
     resetSelectedTopicId()
+    resetEntries()
     fetchTopics(item.id)
   };
 

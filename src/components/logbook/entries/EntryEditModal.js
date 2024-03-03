@@ -39,7 +39,7 @@ export const EntryEditModal = ({isOpen, onOpen, onClose}) => {
       <ModalOverlay />
         <ModalContent w="960px">
           <ModalHeader>Edit {entry?.title}</ModalHeader>
-          <ModalCloseButton />
+          <ModalCloseButton size='lg'/>
           <ModalBody>
             <FormControl>
               <FormLabel>Title</FormLabel>
@@ -52,8 +52,8 @@ export const EntryEditModal = ({isOpen, onOpen, onClose}) => {
           </ModalBody>
 
           <ModalFooter>
-            <Button onClick={onClose} mr={3}>Cancel</Button>
-            <Button colorScheme='teal' mr={3} onClick={onClick}>
+            <Button onClick={onClose} mr={3} size='lg'>Cancel</Button>
+            <Button colorScheme='teal' mr={3} onClick={onClick} size='lg'>
               Save Log Entry
             </Button>
           </ModalFooter>

@@ -29,7 +29,7 @@ export const InputModal = ({ clickFunc, fetchCollection, isOpen, onClose, initia
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>{header}</ModalHeader>
-        <ModalCloseButton/>
+        <ModalCloseButton size='lg'/>
         <form onSubmit={onClick}>
           <ModalBody>
             <FormControl>
@@ -39,7 +39,7 @@ export const InputModal = ({ clickFunc, fetchCollection, isOpen, onClose, initia
           </ModalBody>
 
           <ModalFooter>
-            <Button type='submit' colorScheme='teal' mr={3}>
+            <Button type='submit' size='lg' colorScheme='teal' mr={3}>
               {buttonText}
             </Button>
           </ModalFooter>

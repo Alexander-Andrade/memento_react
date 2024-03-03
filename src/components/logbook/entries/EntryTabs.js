@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
-import {Tab, TabList, TabPanel, TabPanels, Tabs} from "@chakra-ui/react";
+import {Tab, TabList, TabPanel, TabPanels, Tabs, VStack} from "@chakra-ui/react";
 import {COLOR_LIGHTER} from "../../constants/Colors";
 import './EntryTabs.css';
+import {NotesList} from "./tabs/notes/NotesList";
+import {NoteCreateButton} from "./tabs/notes/NoteCreateButton";
 
 export const EntryTabs = () => {
   return (
@@ -14,42 +16,10 @@ export const EntryTabs = () => {
 
       <TabPanels>
         <TabPanel>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p><p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-          <p>one!</p>
-
+          <VStack align='stretch'>
+            <NoteCreateButton />
+            <NotesList />
+          </VStack>
         </TabPanel>
         <TabPanel>
           <p>two!</p>

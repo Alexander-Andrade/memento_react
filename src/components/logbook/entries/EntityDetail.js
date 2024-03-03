@@ -15,13 +15,23 @@ import MDEditor from "@uiw/react-md-editor";
 import './EntryDetail.css';
 import {EntryTabs} from "./EntryTabs";
 import moment from "moment";
+import {useEffect} from "react";
+import {useNotesStore} from "../../store/Notes";
 
 export const EntityDetail = () => {
   const entry = useEntriesStore((state) => state.entry)
+  const fetchNotes = useNotesStore((state) => state.fetch)
 
   const formatDateTime = (created_at) => {
     return moment(created_at).format('YYYY-MM-DD HH:mm');
   }
+
+
+  useEffect(() => {
+    if(entry != null) {
+      fetchNotes(entry.id)
+    }
+  }, [entry]);
 
   if(!entry) {
     return null

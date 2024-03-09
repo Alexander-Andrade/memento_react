@@ -43,7 +43,7 @@ export const NoteEditModal = ({isOpen, onOpen, onClose, note= null}) => {
     <Modal isOpen={isOpen} onClose={onClose} size='80em' >
       <ModalOverlay />
         <ModalContent w="960px">
-          <ModalHeader>Edit Note</ModalHeader>
+          <ModalHeader color='memento.600'>Edit Note</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <FormControl>

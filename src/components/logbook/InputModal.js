@@ -28,12 +28,12 @@ export const InputModal = ({ clickFunc, fetchCollection, isOpen, onClose, initia
     <Modal isOpen={isOpen} onClose={onClose} initialFocusRef={initialRef}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>{header}</ModalHeader>
+        <ModalHeader color='memento.600'>{header}</ModalHeader>
         <ModalCloseButton size='lg'/>
         <form onSubmit={onClick}>
           <ModalBody>
             <FormControl>
-              <FormLabel>{formLabel}</FormLabel>
+              <FormLabel color='memento.600'>{formLabel}</FormLabel>
               <Input ref={initialRef} value={input} onChange={handleInputChange} size='lg'/>
             </FormControl>
           </ModalBody>

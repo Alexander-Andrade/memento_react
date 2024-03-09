@@ -38,15 +38,15 @@ export const EntryEditModal = ({isOpen, onOpen, onClose}) => {
     <Modal isOpen={isOpen} onClose={onClose} size='80em' >
       <ModalOverlay />
         <ModalContent w="960px">
-          <ModalHeader>Edit {entry?.title}</ModalHeader>
+          <ModalHeader color='memento.600'>Edit {entry?.title}</ModalHeader>
           <ModalCloseButton size='lg'/>
           <ModalBody>
             <FormControl>
-              <FormLabel>Title</FormLabel>
+              <FormLabel color='memento.600'>Title</FormLabel>
               <Input value={entryTitle} onChange={setEntryTitle} size='lg'/>
             </FormControl>
             <FormControl mt={4}>
-              <FormLabel>Description</FormLabel>
+              <FormLabel color='memento.600'>Description</FormLabel>
               <MDEditor height={600} value={entryDescription} onChange={setEntryDescription} autoFocus={true} preview={'edit'}/>
             </FormControl>
           </ModalBody>

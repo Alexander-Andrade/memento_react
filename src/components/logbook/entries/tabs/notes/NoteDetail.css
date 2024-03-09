@@ -1,0 +1,15 @@
+.hover-button {
+    opacity: 0.3;
+    position: absolute;
+    top: 50%;
+    left: 93%;
+    transform: translate(-30%, -50%);
+}
+
+.item-with-hidden-buttons {
+    position: relative;
+}
+
+.item-with-hidden-buttons:hover .hover-button {
+    opacity: 1;
+}

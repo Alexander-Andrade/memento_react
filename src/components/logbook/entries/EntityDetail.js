@@ -10,21 +10,19 @@ import {
   Heading, Stack
 } from "@chakra-ui/react";
 import {useEntriesStore} from "../../store/Entries";
-import {COLOR_DARK, COLOR_DARKER, COLOR_LIGHTER} from "../../constants/Colors";
+import {COLOR_DARK, COLOR_DARKER, COLOR_LIGHT, COLOR_LIGHTER} from "../../constants/Colors";
 import MDEditor from "@uiw/react-md-editor";
 import './EntryDetail.css';
 import {EntryTabs} from "./EntryTabs";
 import moment from "moment";
 import {useEffect} from "react";
 import {useNotesStore} from "../../store/Notes";
+import {formatDateTime} from "../../helpers/Time";
+
 
 export const EntityDetail = () => {
   const entry = useEntriesStore((state) => state.entry)
   const fetchNotes = useNotesStore((state) => state.fetch)
-
-  const formatDateTime = (created_at) => {
-    return moment(created_at).format('YYYY-MM-DD HH:mm');
-  }
 
 
   useEffect(() => {
@@ -40,18 +38,13 @@ export const EntityDetail = () => {
   return (
     <Card bg={COLOR_DARKER}>
       <CardHeader>
-        <Heading fontSize='2xl' color={COLOR_LIGHTER}>{entry.title}</Heading>
+        <Heading fontSize='2xl' color={COLOR_LIGHTER}>{entry.title} <Text class='timestamp' color={COLOR_LIGHT}>{formatDateTime(entry.created_at)} </Text></Heading>
       </CardHeader>
 
       <CardBody>
         <Stack divider={<StackDivider />} spacing='1'>
           <Box data-color-mode="dark">
             <MDEditor.Markdown source={entry.description} />
-          </Box>
-          <Box>
-            <Text pt='2' fontSize='md' color={COLOR_LIGHTER}>
-              {formatDateTime(entry.created_at)}
-            </Text>
           </Box>
           <Box>
             <EntryTabs />

@@ -3,7 +3,7 @@ import {
     Menu,
     MenuButton,
     MenuItem,
-    MenuList, useDisclosure
+    MenuList, Text, useDisclosure
 } from '@chakra-ui/react'
 import {DeleteIcon, EditIcon, HamburgerIcon} from "@chakra-ui/icons";
 import {InputModal} from "./InputModal";
@@ -41,7 +41,7 @@ export const ListItemMenu = ({ itemId, field, fetchList, collectionName, updateF
             isOpen={deleteDisclosure.isOpen}
             onClose={deleteDisclosure.onClose}
             header={`Delete ${collectionName}`}
-            body={field}
+            body={<Text>{field}</Text>}
             buttonText='Delete'
         />
     </>

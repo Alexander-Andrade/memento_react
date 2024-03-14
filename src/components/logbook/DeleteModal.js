@@ -4,7 +4,7 @@ import {
     Modal, ModalBody, ModalCloseButton,
     ModalContent, ModalFooter,
     ModalHeader,
-    ModalOverlay, Text
+    ModalOverlay
 } from '@chakra-ui/react'
 
 export const DeleteModal = ({ clickFunc, fetchCollection, isOpen, onClose, header, body, buttonText='Delete'}) => {
@@ -17,11 +17,11 @@ export const DeleteModal = ({ clickFunc, fetchCollection, isOpen, onClose, heade
     return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-        <ModalContent>
+        <ModalContent className='note-delete-modal'>
           <ModalHeader>{header}</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
-              <Text>{body}</Text>
+          <ModalBody >
+            {body}
           </ModalBody>
           <ModalFooter>
             <Button colorScheme='teal' mr={3} onClick={onClick}>

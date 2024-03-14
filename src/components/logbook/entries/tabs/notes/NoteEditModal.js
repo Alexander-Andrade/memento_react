@@ -29,25 +29,24 @@ export const NoteEditModal = ({isOpen, onOpen, onClose, note= null}) => {
   const onClick = async () => {
       onClose()
       if(note == null){
-        debugger
         await createNote(entryId, noteDescription)
       }
       else {
           await updateNote(entryId, note.id, noteDescription)
       }
-
+      setNoteDescription('')
       fetchNotes(entryId)
   };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size='80em' >
       <ModalOverlay />
-        <ModalContent w="960px">
+        <ModalContent w="960px" minH="100px" h='audo'>
           <ModalHeader color='memento.600'>Edit Note</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <FormControl>
-              <MDEditor height={600} value={noteDescription} onChange={setNoteDescription} autoFocus={true} preview={'edit'}/>
+              <MDEditor height="100%" visibleDragbar={false} value={noteDescription} onChange={setNoteDescription} autoFocus={true} preview={'edit'}/>
             </FormControl>
           </ModalBody>
 

@@ -19,7 +19,7 @@ export const NotesList = () => {
           divider={<StackDivider />}
           spacing={0}
           align='stretch'
-          height='50vh'
+          height='90vh'
           >
       {
         notes.map((note) => (

@@ -22,5 +22,5 @@ export const updateNote = (entryId, id, title, description) => {
 export const deleteNote = (entryId, id) => {
    let authHeader =  getAuthHeader()
    const headers = { ...authHeader, 'Content-Type': 'multipart/form-data' }
-   return axios.delete(`${process.env.REACT_APP_API_BASE_URL}/api/topics/${entryId}/entries/${id}/`, { headers })
+   return axios.delete(`${process.env.REACT_APP_API_BASE_URL}/api/entries/${entryId}/notes/${id}/`, { headers })
 }

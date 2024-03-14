@@ -1,15 +1,16 @@
 import {
-    IconButton,
-    Menu,
-    MenuButton,
-    MenuItem,
-    MenuList, useDisclosure
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList, Text, useDisclosure
 } from '@chakra-ui/react'
 import {DeleteIcon, EditIcon, HamburgerIcon} from "@chakra-ui/icons";
 import {useBookmarksStore} from "../../store/Bookmarks";
 import {deleteBookmark, updateBookmark} from "../../queries/Bookmarks";
 import {InputModal} from "../InputModal";
 import {DeleteModal} from "../DeleteModal";
+import React from "react";
 
 export const BookmarkItemMenu = ({ item }) => {
     const editDisclosure = useDisclosure()
@@ -44,7 +45,7 @@ export const BookmarkItemMenu = ({ item }) => {
             isOpen={deleteDisclosure.isOpen}
             onClose={deleteDisclosure.onClose}
             header='Delete Bookmark'
-            body={item.title}
+            body={<Text>item.title</Text>}
             buttonText='Delete'
         />
     </>

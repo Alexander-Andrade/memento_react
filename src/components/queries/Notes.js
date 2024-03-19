@@ -13,10 +13,10 @@ export const createNote = (entryId, description) => {
    return axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/entries/${entryId}/notes/`, {description}, { headers })
 }
 
-export const updateNote = (entryId, id, title, description) => {
+export const updateNote = (entryId, id, description) => {
    let authHeader =  getAuthHeader()
    const headers = { ...authHeader, 'Content-Type': 'multipart/form-data' }
-   return axios.patch(`${process.env.REACT_APP_API_BASE_URL}/api/entries/${entryId}/entries/${id}/`, {title, description}, { headers })
+   return axios.patch(`${process.env.REACT_APP_API_BASE_URL}/api/entries/${entryId}/notes/${id}/`, {description}, { headers })
 }
 
 export const deleteNote = (entryId, id) => {

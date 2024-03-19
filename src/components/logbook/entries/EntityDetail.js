@@ -2,19 +2,16 @@ import {
   Card,
   CardBody,
   Text,
-  IconButton,
-  useDisclosure,
   CardHeader,
   StackDivider,
   Box,
   Heading, Stack
 } from "@chakra-ui/react";
 import {useEntriesStore} from "../../store/Entries";
-import {COLOR_DARK, COLOR_DARKER, COLOR_LIGHT, COLOR_LIGHTER} from "../../constants/Colors";
+import {COLOR_DARKER, COLOR_LIGHT, COLOR_LIGHTER} from "../../constants/Colors";
 import MDEditor from "@uiw/react-md-editor";
 import './EntryDetail.css';
 import {EntryTabs} from "./EntryTabs";
-import moment from "moment";
 import {useEffect} from "react";
 import {useNotesStore} from "../../store/Notes";
 import {formatDateTime} from "../../helpers/Time";

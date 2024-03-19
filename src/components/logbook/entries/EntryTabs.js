@@ -9,9 +9,9 @@ export const EntryTabs = () => {
   return (
     <Tabs>
       <TabList color={COLOR_LIGHTER}>
-        <Tab fontSize='2xl'>One</Tab>
-        <Tab fontSize='2xl'>Two</Tab>
-        <Tab fontSize='2xl'>Three</Tab>
+        <Tab fontSize='2xl'>Notes</Tab>
+        <Tab fontSize='2xl'>Events</Tab>
+        <Tab fontSize='2xl'>Documents</Tab>
       </TabList>
 
       <TabPanels>

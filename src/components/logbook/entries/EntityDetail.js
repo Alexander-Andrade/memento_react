@@ -33,15 +33,15 @@ export const EntityDetail = () => {
   }
 
   return (
-    <Card bg={COLOR_DARKER}>
+    <Card bg={COLOR_DARKER} width='30vw' height='96vh' className='scrollable'>
       <CardHeader>
         <Heading fontSize='2xl' color={COLOR_LIGHTER}>{entry.title} <Text class='timestamp' color={COLOR_LIGHT}>{formatDateTime(entry.created_at)} </Text></Heading>
       </CardHeader>
 
       <CardBody>
         <Stack divider={<StackDivider />} spacing='1'>
-          <Box data-color-mode="dark">
-            <MDEditor.Markdown source={entry.description} />
+          <Box data-color-mode="dark" className='markdown-preview'>
+            <MDEditor.Markdown source={entry.description}/>
           </Box>
           <Box>
             <EntryTabs />

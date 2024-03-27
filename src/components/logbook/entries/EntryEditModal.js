@@ -45,9 +45,9 @@ export const EntryEditModal = ({isOpen, onOpen, onClose}) => {
               <FormLabel color='memento.600'>Title</FormLabel>
               <Input value={entryTitle} onChange={setEntryTitle} size='lg'/>
             </FormControl>
-            <FormControl mt={4}>
+            <FormControl mt={4} data-color-mode="dark">
               <FormLabel color='memento.600'>Description</FormLabel>
-              <MDEditor height={600} value={entryDescription} onChange={setEntryDescription} autoFocus={true} preview={'edit'}/>
+              <MDEditor height='100%' value={entryDescription} onChange={setEntryDescription} autoFocus={true}/>
             </FormControl>
           </ModalBody>
 

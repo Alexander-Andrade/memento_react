@@ -15,9 +15,9 @@ export const DeleteModal = ({ clickFunc, fetchCollection, isOpen, onClose, heade
       };
 
     return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose} size='80em'>
       <ModalOverlay />
-        <ModalContent className='note-delete-modal'>
+        <ModalContent w="900px" className='note-delete-modal' data-color-mode="dark" >
           <ModalHeader>{header}</ModalHeader>
           <ModalCloseButton />
           <ModalBody >

@@ -13,7 +13,3 @@
 .item-with-hidden-buttons:hover .hover-button {
     opacity: 1;
 }
-
-.note-delete-modal .wmde-markdown {
-    background-color: #ffffff !important;
-}

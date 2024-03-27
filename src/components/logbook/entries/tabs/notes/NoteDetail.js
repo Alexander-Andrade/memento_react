@@ -26,9 +26,9 @@ export const NoteDetail = ({note}) => {
 
   return (
     <HStack p={4} className='item-with-hidden-buttons'>
-      <Box data-color-mode="dark">
+      <Box data-color-mode="dark" className='markdown-preview'>
         <MDEditor.Markdown source={note.description} />
-        <Text class="timestamp">{formatDateTime(note.created_at)}</Text>
+        {/*<Text class="timestamp">{formatDateTime(note.created_at)}</Text>*/}
         <Box style={{width: '140px'}} className="hover-button">
           <IconButton onClick={editDisclosure.onOpen} mr={4} colorScheme='teal' variant='ghost' aria-label='Edit note' size='lg' icon={<EditIcon />}/>
           <NoteEditModal isOpen={editDisclosure.isOpen} onOpen={editDisclosure.onOpen} onClose={editDisclosure.onClose} note={note}/>

@@ -18,6 +18,7 @@ import {DeleteModal} from "../../../DeleteModal";
 import {deleteNote} from "../../../../queries/Notes";
 import {useNotesStore} from "../../../../store/Notes";
 import {NoteEditModal} from "./NoteEditModal";
+import {COLOR_LIGHT} from "../../../../constants/Colors";
 
 export const NoteDetail = ({note}) => {
   const editDisclosure = useDisclosure()
@@ -28,7 +29,7 @@ export const NoteDetail = ({note}) => {
     <HStack p={4} className='item-with-hidden-buttons'>
       <Box data-color-mode="dark" className='markdown-preview'>
         <MDEditor.Markdown source={note.description} />
-        {/*<Text class="timestamp">{formatDateTime(note.created_at)}</Text>*/}
+        <Text className="timestamp" mt={1}>{formatDateTime(note.created_at)}</Text>
         <Box style={{width: '140px'}} className="hover-button">
           <IconButton onClick={editDisclosure.onOpen} mr={4} colorScheme='teal' variant='ghost' aria-label='Edit note' size='lg' icon={<EditIcon />}/>
           <NoteEditModal isOpen={editDisclosure.isOpen} onOpen={editDisclosure.onOpen} onClose={editDisclosure.onClose} note={note}/>

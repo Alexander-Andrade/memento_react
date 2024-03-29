@@ -41,9 +41,9 @@ export const NoteEditModal = ({isOpen, onOpen, onClose, note= null}) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} size='80em' >
       <ModalOverlay />
-        <ModalContent w="1800px" minH="100px" h='audo' className='note-edit-modal'>
+        <ModalContent w="1900px" minH="100px" h='audo' className='note-edit-modal'>
           <ModalHeader color='memento.600'>Edit Note</ModalHeader>
-          <ModalCloseButton />
+          <ModalCloseButton size='lg'/>
           <ModalBody>
             <FormControl data-color-mode="dark">
               <MDEditor height="100%" visibleDragbar={false} value={noteDescription} onChange={setNoteDescription} autoFocus={true}/>

@@ -1,9 +1,10 @@
 .hover-button {
     opacity: 0.3;
     position: absolute;
-    top: 50%;
-    left: 90%;
-    transform: translate(-50%, -50%);
+    top: 8px;
+    /*left: 90%;*/
+    right: 0px;
+    /*transform: translate(-50%, -50%);*/
 }
 
 .item-with-hidden-buttons {

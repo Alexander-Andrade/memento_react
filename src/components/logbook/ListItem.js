@@ -9,7 +9,7 @@ export const ListItem = ({ itemId, field, selected, onSelect, fetchList, collect
   return (
     <Flex flexDirection='row' justifyContent='space-between' bg={color} onClick={onSelect} borderRadius="md">
     <Flex flexDirection='column' justifyContent='center' h='60px' fontWeight='bold'>
-        <Text color={COLOR_LIGHTER} pl={3} fontSize='2xl' textAlign='left'>{field}</Text>
+        <Text color={COLOR_LIGHTER} pl={3} fontSize='2xl' textAlign='left' className='category-item'>{field}</Text>
     </Flex>
      <Flex flexDirection='column' justifyContent='center' h='60px'>
         <ListItemMenu

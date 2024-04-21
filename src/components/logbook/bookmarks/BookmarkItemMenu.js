@@ -11,6 +11,7 @@ import {deleteBookmark, updateBookmark} from "../../queries/Bookmarks";
 import {InputModal} from "../InputModal";
 import {DeleteModal} from "../DeleteModal";
 import React from "react";
+import "../../../css/Menu.css"
 
 export const BookmarkItemMenu = ({ item }) => {
     const editDisclosure = useDisclosure()
@@ -20,11 +21,11 @@ export const BookmarkItemMenu = ({ item }) => {
     return (
     <>
         <Menu colorScheme='teal' variant='ghost'>
-          <MenuButton as={IconButton} aria-label='Options' icon={<HamburgerIcon />} variant='ghost' colorScheme='teal'>
+          <MenuButton as={IconButton} aria-label='Options' icon={<HamburgerIcon />} variant='ghost' colorScheme='teal' size='lg'>
           </MenuButton>
-          <MenuList >
-            <MenuItem onClick={editDisclosure.onOpen} color='teal' icon={<EditIcon />}>Edit</MenuItem>
-            <MenuItem onClick={deleteDisclosure.onOpen} color='teal' icon={<DeleteIcon />}>Delete</MenuItem>
+          <MenuList className='menu-list'>
+            <MenuItem onClick={editDisclosure.onOpen} icon={<EditIcon />} className='menu-list-item'>Edit</MenuItem>
+            <MenuItem onClick={deleteDisclosure.onOpen} icon={<DeleteIcon />} className='menu-list-item'>Delete</MenuItem>
           </MenuList>
         </Menu>
 

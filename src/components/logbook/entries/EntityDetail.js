@@ -14,17 +14,19 @@ import './EntryDetail.css';
 import {EntryTabs} from "./EntryTabs";
 import {useEffect} from "react";
 import {useNotesStore} from "../../store/Notes";
+import {useEventsStore} from "../../store/Events";
 import {formatDateTime} from "../../helpers/Time";
 
 
 export const EntityDetail = () => {
   const entry = useEntriesStore((state) => state.entry)
   const fetchNotes = useNotesStore((state) => state.fetch)
-
+  const fetchEvents = useEventsStore((state) => state.fetch)
 
   useEffect(() => {
     if(entry != null) {
       fetchNotes(entry.id)
+      fetchEvents(entry.id)
     }
   }, [entry]);
 

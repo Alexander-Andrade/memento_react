@@ -3,7 +3,9 @@ import {Tab, TabList, TabPanel, TabPanels, Tabs, VStack} from "@chakra-ui/react"
 import {COLOR_LIGHTER} from "../../constants/Colors";
 import './EntryTabs.css';
 import {NotesList} from "./tabs/notes/NotesList";
+import {EventsList} from "./tabs/events/EventsList";
 import {NoteCreateButton} from "./tabs/notes/NoteCreateButton";
+import {EventCreateButton} from "./tabs/events/EventCreateButton";
 
 export const EntryTabs = () => {
   return (
@@ -15,16 +17,19 @@ export const EntryTabs = () => {
       </TabList>
 
       <TabPanels>
-        <TabPanel>
+        <TabPanel p={0} pt={4}>
           <VStack align='stretch'>
             <NoteCreateButton />
             <NotesList />
           </VStack>
         </TabPanel>
-        <TabPanel>
-          <p>two!</p>
+        <TabPanel p={0} pt={4}>
+          <VStack align='stretch'>
+            <EventCreateButton />
+            <EventsList />
+          </VStack>
         </TabPanel>
-        <TabPanel>
+        <TabPanel p={0} pt={4}>
           <p>three!</p>
         </TabPanel>
       </TabPanels>

@@ -19,7 +19,7 @@ export const BookmarkItem = ({ item, selected, setSelected }) => {
   };
 
   return (
-    <Flex flexDirection='row' justifyContent='space-between' bg={color} onClick={onSelect} borderRadius="md">
+    <Flex flexDirection='row' justifyContent='space-between' bg={color} onClick={onSelect} borderRadius="md" className='category-item'>
     <Flex flexDirection='column' justifyContent='center' h='60px' fontWeight='bold'>
         <Text color={COLOR_LIGHTER} pl={3} fontSize='2xl' textAlign='left'>{item.title}</Text>
     </Flex>

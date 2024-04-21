@@ -1,0 +1,89 @@
+.react-datepicker-wrapper {
+    font-size: 30px;
+}
+
+.react-datepicker-popper {
+    transform: translate(0px, 55px)!important;
+}
+
+.react-datepicker {
+    font-size: 1.3rem;
+    border: none;
+    background-color: #176B87;
+}
+
+.react-datepicker__time-container {
+    width: 170px;
+    border-left: 1px solid #053B50;
+}
+
+.react-datepicker__time-container .react-datepicker__time {
+    background: #176B87;
+    color: #fff;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item:hover {
+  cursor: pointer;
+  background-color: #053B50;
+}
+
+.react-datepicker__day:hover,
+.react-datepicker__month-text:hover,
+.react-datepicker__quarter-text:hover,
+.react-datepicker__year-text:hover {
+  background-color: #053B50;
+}
+
+.react-datepicker__day-name {
+    color: #fff;
+}
+
+.react-datepicker__day {
+    color: #fff;
+}
+
+.react-datepicker__header {
+  background-color: #053B50;
+  border-bottom: none;
+}
+
+.react-datepicker__current-month{
+    font-size: 1.4rem;
+    color: #ffffff;
+}
+
+.react-datepicker-time__header{
+    font-size: 1.4rem;
+    color: #ffffff;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
+    width: 170px;
+    height: 400px!important;
+}
+
+.react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+    width: 2.7rem;
+    line-height: 2.7rem;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box {
+    width: 170px;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item {
+    height: 45px;
+    padding-TOP: 10px;
+}
+
+.react-datepicker__day--selected {
+    background-color: #64CCC5;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected {
+    background-color: #64CCC5;
+}
+
+.react-datepicker__navigation--next--with-time:not(.react-datepicker__navigation--next--with-today-button) {
+    right: 130px;
+}

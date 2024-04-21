@@ -28,7 +28,7 @@ export const InputModal = ({ clickFunc, fetchCollection, isOpen, onClose, initia
     <Modal isOpen={isOpen} onClose={onClose} initialFocusRef={initialRef}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader color='memento.600'>{header}</ModalHeader>
+        <ModalHeader>{header}</ModalHeader>
         <ModalCloseButton size='lg'/>
         <form onSubmit={onClick}>
           <ModalBody>

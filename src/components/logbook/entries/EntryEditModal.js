@@ -37,8 +37,8 @@ export const EntryEditModal = ({isOpen, onOpen, onClose}) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} size='80em' >
       <ModalOverlay />
-        <ModalContent w="960px">
-          <ModalHeader color='memento.600'>Edit {entry?.title}</ModalHeader>
+        <ModalContent w="1900px">
+          <ModalHeader>Edit {entry?.title}</ModalHeader>
           <ModalCloseButton size='lg'/>
           <ModalBody>
             <FormControl>

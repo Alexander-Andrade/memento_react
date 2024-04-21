@@ -3,10 +3,6 @@ import {
   Button,
   useDisclosure
 } from '@chakra-ui/react'
-import {useEntriesStore} from "../../../../store/Entries";
-import {InputModal} from "../../../InputModal";
-import {createNote, fetchNotes} from "../../../../queries/Notes";
-import {useNotesStore} from "../../../../store/Notes";
 import {NoteEditModal} from "./NoteEditModal";
 
 

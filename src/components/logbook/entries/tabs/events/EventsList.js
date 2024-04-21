@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
 import { VStack, StackDivider } from '@chakra-ui/react'
 import InfiniteScroll from 'react-infinite-scroll-component';
-import {useNotesStore} from "../../../../store/Notes";
-import {NoteDetail} from "./NoteDetail";
+import {useEventsStore} from "../../../../store/Events";
+import {EventDetail} from "./EventDetail";
 
-export const NotesList = () => {
-  const notes = useNotesStore((state) => state.notes)
-  const fetchNextNotes = useNotesStore((state) => state.fetchNext)
-  const nextUrl = useNotesStore((state) => state.next)
+export const EventsList = () => {
+  const events = useEventsStore((state) => state.events)
+  const fetchNextNotes = useEventsStore((state) => state.fetchNext)
+  const nextUrl = useEventsStore((state) => state.next)
 
   return (
     <InfiniteScroll
-      dataLength={notes.length}
+      dataLength={events.length}
       next={fetchNextNotes}
       hasMore={nextUrl != null}
     >
@@ -20,11 +20,10 @@ export const NotesList = () => {
           spacing={0}
           align='stretch'
           maxHeight='100vh'
-          pl={0}
           >
       {
-        notes.map((note) => (
-          <NoteDetail note={note} key={`notes-${note.id}`}/>
+        events.map((event) => (
+          <EventDetail event={event} key={`events-${event.id}`}/>
         ))
       }
       </VStack>

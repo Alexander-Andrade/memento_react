@@ -6,16 +6,17 @@ import {
   ModalCloseButton,
   ModalBody,
 } from "@chakra-ui/react";
+import "./PreviewModal.css"
 
-export const PreviewModal = ({isOpen, onClose, modalHeader, modalBody}) => {
+export const PreviewModal = ({isOpen, onClose, header, body}) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} size='80em' >
       <ModalOverlay />
-        <ModalContent w="960px">
-          <ModalHeader>{modalHeader}</ModalHeader>
+        <ModalContent w="1900px" data-color-mode="dark" className='preview-modal'>
+          <ModalHeader>{header}</ModalHeader>
           <ModalCloseButton size='lg'/>
           <ModalBody>
-            {modalBody}
+            {body}
           </ModalBody>
         </ModalContent>
     </Modal>

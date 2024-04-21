@@ -29,10 +29,10 @@ export const NoteEditModal = ({isOpen, onOpen, onClose, note= null}) => {
   const onClick = async () => {
       onClose()
       if(note == null){
-        await createNote(entryId, noteDescription)
+        await createNote(entryId, { description: noteDescription })
       }
       else {
-          await updateNote(entryId, note.id, noteDescription)
+          await updateNote(entryId, note.id, { description: noteDescription })
       }
       setNoteDescription('')
       fetchNotes(entryId)

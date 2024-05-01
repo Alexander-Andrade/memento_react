@@ -1,19 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
     Flex,
-    IconButton, Text,
+    IconButton,
     useDisclosure
 } from '@chakra-ui/react'
 import {AddIcon} from "@chakra-ui/icons";
-import {createBookmark} from "../../queries/Bookmarks";
 import {useBookmarksStore} from "../../store/Bookmarks";
 import {InputModal} from "../InputModal";
-import {COLOR_LIGHTER} from "../../constants/Colors";
 
 
 export const BookmarkCreateButton = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const fetchBookmarks = useBookmarksStore((state) => state.fetch)
+  const createBookmark = useBookmarksStore((state) => state.create)
 
 
   return (
@@ -22,8 +20,7 @@ export const BookmarkCreateButton = () => {
         <IconButton onClick={onOpen} flex='1' aria-label='Add Bookmark' size='lg' colorScheme='teal' variant='ghost' icon={<AddIcon/>} />
     </Flex>
     <InputModal
-        clickFunc={(input) => createBookmark(input)}
-        fetchCollection={fetchBookmarks}
+        clickFunc={(input) => createBookmark({ title: input })}
         isOpen={isOpen}
         onClose={onClose}
         header='Create Bookmark'

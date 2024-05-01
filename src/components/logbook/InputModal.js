@@ -9,7 +9,7 @@ import {
     ModalOverlay
 } from '@chakra-ui/react'
 
-export const InputModal = ({ clickFunc, fetchCollection, isOpen, onClose, initialInput='', header, formLabel, buttonText}) => {
+export const InputModal = ({ clickFunc, isOpen, onClose, initialInput='', header, formLabel, buttonText}) => {
     const [input, setInput] = useState(initialInput)
     const initialRef = React.useRef(null)
 
@@ -18,8 +18,6 @@ export const InputModal = ({ clickFunc, fetchCollection, isOpen, onClose, initia
         event.stopPropagation()
         onClose()
         await clickFunc(input)
-        setInput('')
-        fetchCollection()
       };
 
     const handleInputChange = (e) => setInput(e.target.value)

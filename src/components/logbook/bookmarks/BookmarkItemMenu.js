@@ -7,16 +7,19 @@ import {
 } from '@chakra-ui/react'
 import {DeleteIcon, EditIcon, HamburgerIcon} from "@chakra-ui/icons";
 import {useBookmarksStore} from "../../store/Bookmarks";
-import {deleteBookmark, updateBookmark} from "../../queries/Bookmarks";
 import {InputModal} from "../InputModal";
 import {DeleteModal} from "../DeleteModal";
 import React from "react";
 import "../../../css/Menu.css"
+import {useShallow} from "zustand/react/shallow";
 
 export const BookmarkItemMenu = ({ item }) => {
     const editDisclosure = useDisclosure()
     const deleteDisclosure = useDisclosure()
-    const fetchBookmarks = useBookmarksStore((state) => state.fetch)
+    const { updateBookmark, deleteBookmark } = useBookmarksStore(
+      useShallow((state) => ({ updateBookmark: state.update, deleteBookmark: state.delete })),
+    )
+
 
     return (
     <>
@@ -31,9 +34,8 @@ export const BookmarkItemMenu = ({ item }) => {
 
         <InputModal
             key={`bookmark-input-modal-${item.id}`}
-            clickFunc={(input)=> updateBookmark(item.id, input)}
+            clickFunc={(input)=> updateBookmark(item.id, { title: input })}
             initialInput={item.title}
-            fetchCollection={fetchBookmarks}
             isOpen={editDisclosure.isOpen}
             onClose={editDisclosure.onClose}
             header='Update Bookmark'
@@ -42,11 +44,10 @@ export const BookmarkItemMenu = ({ item }) => {
         />
         <DeleteModal
             clickFunc={()=> deleteBookmark(item.id)}
-            fetchCollection={fetchBookmarks}
             isOpen={deleteDisclosure.isOpen}
             onClose={deleteDisclosure.onClose}
             header='Delete Bookmark'
-            body={<Text>item.title</Text>}
+            body={<Text>{item.title}</Text>}
             buttonText='Delete'
         />
     </>

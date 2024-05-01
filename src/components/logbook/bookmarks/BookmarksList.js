@@ -3,7 +3,6 @@ import { VStack, StackDivider } from '@chakra-ui/react'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import {useBookmarksStore} from "../../store/Bookmarks";
 import {BookmarkItem} from "./BookmarkItem";
-import { useNavigate } from 'react-router-dom';
 
 export const BookmarksList = () => {
     const selectedId = useBookmarksStore((state) => state.selectedId)

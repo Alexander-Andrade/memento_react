@@ -10,22 +10,23 @@ import './NoteDetail.css'
 import {formatDateTime} from "../../../../helpers/Time";
 import {DeleteIcon, EditIcon, QuestionIcon, QuestionOutlineIcon, ViewIcon, ViewOffIcon} from "@chakra-ui/icons";
 import {DeleteModal} from "../../../DeleteModal";
-import {createNote, deleteNote} from "../../../../queries/Notes";
 import {useNotesStore} from "../../../../store/Notes";
-import {updateNote} from "../../../../queries/Notes";
 import {NoteEditModal} from "./NoteEditModal";
 import {PreviewModal} from "../../../PreviewModal";
 import {formatMinimized} from "../../../../helpers/TextMinimizer";
+import {useShallow} from "zustand/react/shallow";
 
 export const NoteDetail = ({note}) => {
   const editDisclosure = useDisclosure()
   const previewDisclosure = useDisclosure()
   const deleteDisclosure = useDisclosure()
-  const fetchNotes = useNotesStore((state) => state.fetch)
+  const { fetchNotes, updateNote, deleteNote } = useNotesStore(
+    useShallow((state) => ({ fetchNotes: state.fetch, updateNote: state.update, deleteNote: state.delete })),
+  )
+
 
   const minimize = async () => {
       await updateNote(note.entry_id, note.id, { minimized: !note.minimized })
-      fetchNotes(note.entry_id)
   };
 
   return (

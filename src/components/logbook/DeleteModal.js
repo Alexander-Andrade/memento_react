@@ -7,11 +7,10 @@ import {
     ModalOverlay
 } from '@chakra-ui/react'
 
-export const DeleteModal = ({ clickFunc, fetchCollection, isOpen, onClose, header, body, buttonText='Delete'}) => {
+export const DeleteModal = ({ clickFunc, isOpen, onClose, header, body, buttonText='Delete'}) => {
     const onClick = async () => {
         onClose()
         await clickFunc()
-        fetchCollection()
       };
 
     return (

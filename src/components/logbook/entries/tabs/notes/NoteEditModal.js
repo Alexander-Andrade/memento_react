@@ -6,19 +6,23 @@ import {
   ModalCloseButton,
   ModalBody,
   FormControl,
-  FormLabel, Input, ModalFooter, Button
+  ModalFooter,
+  Button
 } from "@chakra-ui/react";
 import {useEntriesStore} from "../../../../store/Entries";
 import React, {useEffect, useState} from "react";
 import MDEditor from "@uiw/react-md-editor";
 import '../../EntryEditModal.css';
 import {useNotesStore} from "../../../../store/Notes";
-import {createNote, updateNote} from "../../../../queries/Notes";
+import { useShallow } from 'zustand/react/shallow'
 
 export const NoteEditModal = ({isOpen, onOpen, onClose, note= null}) => {
   const [noteDescription, setNoteDescription] = useState('');
-  const fetchNotes = useNotesStore((state) => state.fetch)
   const entryId = useEntriesStore((state) => state.selectedId)
+  // const updateNote = useNotesStore((state) => state.update)
+  const { createNote, updateNote } = useNotesStore(
+    useShallow((state) => ({ updateNote: state.update, createNote: state.create })),
+  )
 
   useEffect(() => {
     if(note != null) {
@@ -32,10 +36,9 @@ export const NoteEditModal = ({isOpen, onOpen, onClose, note= null}) => {
         await createNote(entryId, { description: noteDescription })
       }
       else {
-          await updateNote(entryId, note.id, { description: noteDescription })
+        await updateNote(entryId, note.id, { description: noteDescription })
       }
       setNoteDescription('')
-      fetchNotes(entryId)
   };
 
   return (

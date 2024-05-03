@@ -1,11 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
     Flex,
     IconButton,
     useDisclosure
 } from '@chakra-ui/react'
 import {AddIcon} from "@chakra-ui/icons";
-import {createTopic} from "../../queries/Topics";
 import {useTopicsStore} from "../../store/Topics";
 import {InputModal} from "../InputModal";
 import {useBookmarksStore} from "../../store/Bookmarks";
@@ -13,8 +12,8 @@ import {useBookmarksStore} from "../../store/Bookmarks";
 
 export const TopicCreateButton = ({isDisabled}) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const fetchTopics = useTopicsStore((state) => state.fetch)
   const bookmarkId = useBookmarksStore((state) => state.selectedId)
+  const createTopic = useTopicsStore((state) => state.create)
 
   return (
     <>
@@ -23,8 +22,7 @@ export const TopicCreateButton = ({isDisabled}) => {
     </Flex>
     <InputModal
         key={`topic-input-modal`}
-        clickFunc={(input) => createTopic(bookmarkId, input) }
-        fetchCollection={()=> fetchTopics(bookmarkId) }
+        clickFunc={(input) => createTopic(bookmarkId, { name: input }) }
         isOpen={isOpen}
         onClose={onClose}
         header='Create Topic'

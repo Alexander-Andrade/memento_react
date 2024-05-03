@@ -9,7 +9,7 @@ import {DeleteIcon, EditIcon, HamburgerIcon} from "@chakra-ui/icons";
 import {InputModal} from "./InputModal";
 import {DeleteModal} from "./DeleteModal";
 
-export const ListItemMenu = ({ itemId, field, fetchList, collectionName, updateFunc, deleteFunc }) => {
+export const ListItemMenu = ({ itemId, field, collectionName, updateFunc, deleteFunc }) => {
     const editDisclosure = useDisclosure()
     const deleteDisclosure = useDisclosure()
 
@@ -28,7 +28,6 @@ export const ListItemMenu = ({ itemId, field, fetchList, collectionName, updateF
             key={`${collectionName}-input-modal-${itemId}`}
             clickFunc={updateFunc}
             initialInput={field}
-            fetchCollection={fetchList}
             isOpen={editDisclosure.isOpen}
             onClose={editDisclosure.onClose}
             header={`Update ${collectionName}`}
@@ -37,7 +36,6 @@ export const ListItemMenu = ({ itemId, field, fetchList, collectionName, updateF
         <DeleteModal
             key={`${collectionName}-delete-modal-${itemId}`}
             clickFunc={deleteFunc}
-            fetchCollection={fetchList}
             isOpen={deleteDisclosure.isOpen}
             onClose={deleteDisclosure.onClose}
             header={`Delete ${collectionName}`}

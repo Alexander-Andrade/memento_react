@@ -18,6 +18,10 @@ export const InputModal = ({ clickFunc, isOpen, onClose, initialInput='', header
         event.stopPropagation()
         onClose()
         await clickFunc(input)
+
+        if(initialInput === ''){
+          setInput('')
+        }
       };
 
     const handleInputChange = (e) => setInput(e.target.value)

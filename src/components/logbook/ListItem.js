@@ -3,7 +3,7 @@ import {Flex, Text} from '@chakra-ui/react'
 import {COLOR_DARK, COLOR_DARKER, COLOR_LIGHTER} from "../constants/Colors";
 import {ListItemMenu} from "./ListItemMenu";
 
-export const ListItem = ({ itemId, field, selected, onSelect, fetchList, collectionName, updateFunc, deleteFunc, navigatePath }) => {
+export const ListItem = ({ itemId, field, selected, onSelect, collectionName, updateFunc, deleteFunc }) => {
   const color = (selected === itemId) ? COLOR_DARK : COLOR_DARKER
 
   return (
@@ -15,7 +15,6 @@ export const ListItem = ({ itemId, field, selected, onSelect, fetchList, collect
         <ListItemMenu
             itemId={itemId}
             field={field}
-            fetchList={fetchList}
             collectionName={collectionName}
             updateFunc={updateFunc}
             deleteFunc={deleteFunc}

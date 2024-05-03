@@ -6,16 +6,16 @@ export const fetchTopics = (bookmarkId) => {
    return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/bookmarks/${bookmarkId}/topics/`, { headers })
 }
 
-export const createTopic = (bookmarkId, name) => {
+export const createTopic = (bookmarkId, data) => {
    let authHeader =  getAuthHeader()
    const headers = { ...authHeader, 'Content-Type': 'multipart/form-data' }
-   return axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/bookmarks/${bookmarkId}/topics/`, {name}, { headers })
+   return axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/bookmarks/${bookmarkId}/topics/`, data, { headers })
 }
 
-export const updateTopic = (bookmarkId, id, name) => {
+export const updateTopic = (bookmarkId, id, data) => {
    let authHeader =  getAuthHeader()
    const headers = { ...authHeader, 'Content-Type': 'multipart/form-data' }
-   return axios.patch(`${process.env.REACT_APP_API_BASE_URL}/api/bookmarks/${bookmarkId}/topics/${id}/`, {name}, { headers })
+   return axios.patch(`${process.env.REACT_APP_API_BASE_URL}/api/bookmarks/${bookmarkId}/topics/${id}/`, data, { headers })
 }
 
 export const deleteTopic = (bookmarkId, id) => {

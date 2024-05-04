@@ -1,20 +1,35 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { VStack, StackDivider } from '@chakra-ui/react'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import {useTopicsStore} from "../../store/Topics";
 import {ListItem} from "../ListItem";
 import {useEntriesStore} from "../../store/Entries";
-import {deleteEntry, updateEntry} from "../../queries/Entries";
+import {useShallow} from "zustand/react/shallow";
 
 export const EntriesList = () => {
-  const entries = useEntriesStore((state) => state.entries)
-  const fetchEntries = useEntriesStore((state) => state.fetch)
-  const fetchNextEntries = useEntriesStore((state) => state.fetchNext)
-  const nextUrl = useEntriesStore((state) => state.next)
-  const selectedId = useEntriesStore((state) => state.selectedId)
-  const setSelectedId = useEntriesStore((state) => state.setSelectedId)
   const topicId = useTopicsStore((state) => state.selectedId)
-  const storeEntry = useEntriesStore((state) => state.storeEntry)
+
+  const {
+    entries,
+    fetchNextEntries,
+    nextUrl,
+    selectedId,
+    setSelectedId,
+    storeEntry,
+    updateEntry,
+    deleteEntry
+  } = useEntriesStore(
+    useShallow((state) => ({
+      entries: state.entries,
+      fetchNextTopics: state.fetchNext,
+      nextUrl: state.next,
+      selectedId: state.selectedId,
+      setSelectedId: state.setSelectedId,
+      storeEntry: state.storeEntry,
+      updateEntry: state.update,
+      deleteEntry: state.delete
+    }))
+  );
 
   const onSelect = async (itemId) => {
     setSelectedId(itemId)
@@ -38,12 +53,11 @@ export const EntriesList = () => {
             <ListItem
                 itemId={item.id}
                 field={item.title}
-                fetchList={() => fetchEntries(topicId)}
                 key={`entry-item-${item.id}`}
                 selected={selectedId}
                 onSelect={() => onSelect(item.id)}
                 collectionName='Entry'
-                updateFunc={(input)=> updateEntry(topicId, item.id, input)}
+                updateFunc={(input)=> updateEntry(topicId, item.id, { title: input })}
                 deleteFunc={()=> deleteEntry(topicId, item.id)}
             />
         ))

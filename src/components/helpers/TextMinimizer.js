@@ -1,5 +1,4 @@
 export const formatMinimized = (string, size= 40) => {
-  debugger
   let regex = /^(\s*?)$|(\\|\n)/m;
   const newLineIndex = string.search(regex);
 

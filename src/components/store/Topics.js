@@ -21,7 +21,6 @@ export const useTopicsStore = create((set, get) => ({
     set((state)=> ({ topics: createItem(state.topics, response.data) }))
   },
   update: async (bookmarkId, id, data) => {
-    debugger
     const response = await updateTopic(bookmarkId, id, data)
     set((state)=> ({ topics: updateItem(state.topics, response.data) }))
   },

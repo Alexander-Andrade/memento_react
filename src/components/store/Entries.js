@@ -1,6 +1,7 @@
 import { create } from 'zustand'
-import {fetchEntries, fetchEntry} from "../queries/Entries";
+import {fetchEntries, fetchEntry, deleteEntry, updateEntry, createEntry} from "../queries/Entries";
 import {fetchNext} from "../queries/Pagination";
+import {createItem, deleteItem, updateItem} from "../helpers/PaginatedCollectionManager";
 
 export const useEntriesStore = create((set, get) => ({
   entries: [],
@@ -23,6 +24,18 @@ export const useEntriesStore = create((set, get) => ({
   storeEntry: async (topicId, id) => {
     const response = await fetchEntry(topicId, id)
     set({ entry: response.data })
+  },
+  create: async (topicId, data) => {
+    const response = await createEntry(topicId, data)
+    set((state)=> ({ entries: createItem(state.entries, response.data) }))
+  },
+  update: async (topicId, id, data) => {
+      const response = await updateEntry(topicId, id, data)
+      set((state)=> ({ entries: updateItem(state.entries, response.data) }))
+  },
+  delete: async (topicId, id) => {
+      const response = await deleteEntry(topicId, id)
+      set((state)=> ({ entries: deleteItem(state.entries, id) }))
   },
   resetEntry: () => set({ entry: null }),
   resetEntries: () => set({ entries: [], selectedId: null, entry: null })

@@ -4,7 +4,6 @@ import {
     useDisclosure
 } from '@chakra-ui/react'
 import {AddIcon} from "@chakra-ui/icons";
-import {createEntry} from "../../queries/Entries";
 import {useTopicsStore} from "../../store/Topics";
 import {InputModal} from "../InputModal";
 import {useEntriesStore} from "../../store/Entries";
@@ -12,7 +11,7 @@ import {useEntriesStore} from "../../store/Entries";
 
 export const EntryCreateButton = ({isDisabled}) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const fetchEntries = useEntriesStore((state) => state.fetch)
+  const createEntry = useEntriesStore((state) => state.create)
   const topicId = useTopicsStore((state) => state.selectedId)
 
   return (
@@ -22,8 +21,7 @@ export const EntryCreateButton = ({isDisabled}) => {
     </Flex>
     <InputModal
         key={`topic-input-modal`}
-        clickFunc={(input) => createEntry(topicId, input) }
-        fetchCollection={()=> fetchEntries(topicId) }
+        clickFunc={(input) => createEntry(topicId, { title: input }) }
         isOpen={isOpen}
         onClose={onClose}
         header='Create Entry'

@@ -10,14 +10,25 @@ import {
 } from "@chakra-ui/react";
 import {useEntriesStore} from "../../store/Entries";
 import React, {useEffect, useState} from "react";
-import {updateEntry} from "../../queries/Entries";
 import MDEditor from "@uiw/react-md-editor";
 import './EntryEditModal.css';
+import {useShallow} from "zustand/react/shallow";
 
 export const EntryEditModal = ({isOpen, onOpen, onClose}) => {
   // const initialRef = React.useRef(null)
-  const entry = useEntriesStore((state) => state.entry)
-  const storeEntry = useEntriesStore((state) => state.storeEntry)
+
+  const {
+    entry,
+    storeEntry,
+    updateEntry,
+  } = useEntriesStore(
+    useShallow((state) => ({
+      entry: state.entry,
+      storeEntry: state.storeEntry,
+      updateEntry: state.update,
+    }))
+  );
+
   const [entryDescription, setEntryDescription] = useState('');
   const [entryTitle, setEntryTitle] = useState('');
 
@@ -30,7 +41,7 @@ export const EntryEditModal = ({isOpen, onOpen, onClose}) => {
 
   const onClick = async () => {
       onClose()
-      await updateEntry(entry.topic_id, entry.id, entryTitle, entryDescription)
+      await updateEntry(entry.topic_id, entry.id, { title: entryTitle, description: entryDescription })
       storeEntry(entry.topic_id, entry.id)
     };
 

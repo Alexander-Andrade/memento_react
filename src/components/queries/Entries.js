@@ -11,16 +11,16 @@ export const fetchEntry = (topicId, id) => {
    return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/topics/${topicId}/entries/${id}/`, { headers })
 }
 
-export const createEntry = (topicId, title) => {
+export const createEntry = (topicId, data) => {
    let authHeader =  getAuthHeader()
    const headers = { ...authHeader, 'Content-Type': 'multipart/form-data' }
-   return axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/topics/${topicId}/entries/`, {title}, { headers })
+   return axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/topics/${topicId}/entries/`, data, { headers })
 }
 
-export const updateEntry = (topicId, id, title, description) => {
+export const updateEntry = (topicId, id, data) => {
    let authHeader =  getAuthHeader()
    const headers = { ...authHeader, 'Content-Type': 'multipart/form-data' }
-   return axios.patch(`${process.env.REACT_APP_API_BASE_URL}/api/topics/${topicId}/entries/${id}/`, {title, description}, { headers })
+   return axios.patch(`${process.env.REACT_APP_API_BASE_URL}/api/topics/${topicId}/entries/${id}/`, data, { headers })
 }
 
 export const deleteEntry = (topicId, id) => {

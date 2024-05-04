@@ -15,8 +15,8 @@ export const useNotesStore = create((set, get) => ({
       const response = await fetchNext(get().next)
       set((state)=> ({ notes: [...state.notes, ...response.data.results], next: response.data.next }))
   },
-  create: async (entryId, id, data) => {
-    const response = await createNote(entryId, id, data)
+  create: async (entryId, data) => {
+    const response = await createNote(entryId, data)
     set((state)=> ({ notes: createItem(state.notes, response.data) }))
   },
   update: async (entryId, id, data) => {

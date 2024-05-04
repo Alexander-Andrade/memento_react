@@ -30,8 +30,9 @@ export const useEntriesStore = create((set, get) => ({
     set((state)=> ({ entries: createItem(state.entries, response.data) }))
   },
   update: async (topicId, id, data) => {
-      const response = await updateEntry(topicId, id, data)
-      set((state)=> ({ entries: updateItem(state.entries, response.data) }))
+    const response = await updateEntry(topicId, id, data)
+    set((state)=> ({ entries: updateItem(state.entries, response.data) }))
+    set({ entry: response.data })
   },
   delete: async (topicId, id) => {
       const response = await deleteEntry(topicId, id)

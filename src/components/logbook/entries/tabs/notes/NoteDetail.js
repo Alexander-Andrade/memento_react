@@ -20,8 +20,8 @@ export const NoteDetail = ({note}) => {
   const editDisclosure = useDisclosure()
   const previewDisclosure = useDisclosure()
   const deleteDisclosure = useDisclosure()
-  const { fetchNotes, updateNote, deleteNote } = useNotesStore(
-    useShallow((state) => ({ fetchNotes: state.fetch, updateNote: state.update, deleteNote: state.delete })),
+  const { updateNote, deleteNote } = useNotesStore(
+    useShallow((state) => ({ updateNote: state.update, deleteNote: state.delete })),
   )
 
 
@@ -51,7 +51,6 @@ export const NoteDetail = ({note}) => {
           <DeleteModal
             key={`notes-delete-modal-${note.id}`}
             clickFunc={()=> deleteNote(note.entry_id, note.id)}
-            fetchCollection={() => fetchNotes(note.entry_id)}
             isOpen={deleteDisclosure.isOpen}
             onClose={deleteDisclosure.onClose}
             header={`Delete Note`}

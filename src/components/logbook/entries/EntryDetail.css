@@ -17,3 +17,7 @@
 .scrollable {
   overflow: auto;
 }
+
+.item-with-hidden-buttons:hover .hover-buttons {
+    opacity: 1;
+}

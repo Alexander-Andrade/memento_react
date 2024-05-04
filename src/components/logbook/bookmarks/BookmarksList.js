@@ -24,7 +24,7 @@ export const BookmarksList = () => {
       hasMore={nextUrl != null}
     >
       <VStack
-          divider={<StackDivider />}
+          // divider={<StackDivider />}
           spacing={0}
           align='stretch'
           height='95vh'

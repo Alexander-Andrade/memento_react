@@ -6,43 +6,57 @@ import {
   ModalCloseButton,
   ModalBody,
   FormControl,
-  FormLabel, Input, ModalFooter, Button
+  ModalFooter,
+  Button
 } from "@chakra-ui/react";
 import {useEntriesStore} from "../../../../store/Entries";
 import React, {useEffect, useState} from "react";
 import MDEditor from "@uiw/react-md-editor";
 import '../../EntryEditModal.css';
 import {useEventsStore} from "../../../../store/Events";
-import {createEvent, updateEvent} from "../../../../queries/Events";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import '../../../../../css/ReactDatepicker.css'
+import {useShallow} from "zustand/react/shallow";
+import {useCalendarStore} from "../../../../store/Calendar";
 
 export const EventEditModal = ({isOpen, onOpen, onClose, event= null}) => {
   const [eventDescription, setEventDescription] = useState('');
-  const fetchEvents = useEventsStore((state) => state.fetch)
+  const [startsAt, setStartsAt] = useState(new Date());
+
   const entryId = useEntriesStore((state) => state.selectedId)
-  const [startsAt, setStartsAtAt] = useState(new Date());
+  const fetchCalendarEvents = useCalendarStore((state) => state.fetch)
+
+  const {
+    createEvent,
+    updateEvent
+  } = useEventsStore(
+    useShallow((state) => ({
+      entryId: state.selectedId,
+      createEvent: state.create,
+      updateEvent: state.update,
+    }))
+  );
 
   useEffect(() => {
     if(event != null) {
       setEventDescription(event.description)
-      setStartsAtAt(new Date(event.starts_at))
+      setStartsAt(new Date(event.starts_at))
     }
   }, [event]);
 
   const onClick = async () => {
-      onClose()
-      let params = { description: eventDescription, starts_at: startsAt }
+    onClose()
+    let params = { description: eventDescription, starts_at: startsAt }
 
-      if(event == null){
-        await createEvent(entryId, params)
-      }
-      else {
-          await updateEvent(entryId, event.id, params)
-      }
-      setEventDescription('')
-      fetchEvents(entryId)
+    if(event == null){
+      await createEvent(entryId, params)
+    }
+    else {
+        await updateEvent(entryId, event.id, params)
+    }
+    // setEventDescription('')
+    fetchCalendarEvents()
   };
 
   return (
@@ -55,7 +69,7 @@ export const EventEditModal = ({isOpen, onOpen, onClose, event= null}) => {
             <FormControl mb={6} size='lg'>
               <DatePicker
                 selected={startsAt}
-                onChange={(date) => setStartsAtAt(date)}
+                onChange={(date) => setStartsAt(date)}
                 locale="pt-BR"
                 showTimeSelect
                 timeFormat="HH:mm"

@@ -7,6 +7,7 @@ import {
 import MDEditor from "@uiw/react-md-editor";
 import '../../EntryDetail.css';
 import './NoteDetail.css'
+import '../../../../../css/ListItems.css'
 import {formatDateTime} from "../../../../helpers/Time";
 import {DeleteIcon, EditIcon, QuestionIcon, QuestionOutlineIcon, ViewIcon, ViewOffIcon} from "@chakra-ui/icons";
 import {DeleteModal} from "../../../DeleteModal";

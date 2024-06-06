@@ -4,6 +4,7 @@ import {COLOR_DARK, COLOR_DARKER, COLOR_LIGHTER} from "../../constants/Colors";
 import {BookmarkItemMenu} from "./BookmarkItemMenu";
 import {useTopicsStore} from "../../store/Topics";
 import {useEntriesStore} from "../../store/Entries";
+import '../LineItem.css'
 
 export const BookmarkItem = ({ item, selected, setSelected }) => {
   const fetchTopics = useTopicsStore((state) => state.fetch)

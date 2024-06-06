@@ -2,7 +2,7 @@
 import './LogbookPage.css';
 // import {useBookmarksStore} from "../store/Bookmarks";
 import {BookmarksList} from "../logbook/bookmarks/BookmarksList";
-import {Flex, Box, Divider, Text, IconButton} from '@chakra-ui/react'
+import {Flex, Box, Divider, Text } from '@chakra-ui/react'
 
 import {BookmarkCreateButton} from "../logbook/bookmarks/BookmarkCreateButton";
 import {TopicCreateButton} from "../logbook/topics/TopicCreateButton";
@@ -12,8 +12,8 @@ import {EntryCreateButton} from "../logbook/entries/EntryCreateButton";
 import {EntriesList} from "../logbook/entries/EntryList";
 import {useTopicsStore} from "../store/Topics";
 import {EntityDetail} from "../logbook/entries/EntityDetail";
-import {AddIcon, EditIcon} from "@chakra-ui/icons";
 import {EntryEditButton} from "../logbook/entries/EntryEditButton";
+import {CalendarDetail} from "../logbook/calendar/Detail";
 
 export const LogbookPage = () => {
     const selectedBookmarkId = useBookmarksStore((state) => state.selectedId)
@@ -51,7 +51,8 @@ export const LogbookPage = () => {
                 <Divider orientation='vertical' />
             </Box>
             <Box flex='1'>
-                <Text width={'40vw'}>Calendar Here</Text>
+                {/*<Text width={'40vw'}>Calendar Here</Text>*/}
+                <CalendarDetail />
             </Box>
         </Flex>
     )

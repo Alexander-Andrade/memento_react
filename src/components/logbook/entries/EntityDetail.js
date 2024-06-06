@@ -46,7 +46,6 @@ export const EntityDetail = () => {
   const deleteDisclosure = useDisclosure()
 
   const minimize = async () => {
-    debugger
     await updateEntry(entry.topic_id, entry.id, { minimized: !entry.minimized })
   };
 

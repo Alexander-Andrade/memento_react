@@ -21,7 +21,7 @@ export const EntriesList = () => {
   } = useEntriesStore(
     useShallow((state) => ({
       entries: state.entries,
-      fetchNextTopics: state.fetchNext,
+      fetchNextEntries: state.fetchNext,
       nextUrl: state.next,
       selectedId: state.selectedId,
       setSelectedId: state.setSelectedId,

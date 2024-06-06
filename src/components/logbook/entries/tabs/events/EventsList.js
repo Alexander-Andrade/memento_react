@@ -20,6 +20,7 @@ export const EventsList = () => {
           spacing={0}
           align='stretch'
           maxHeight='100vh'
+          pl={0}
           >
       {
         events.map((event) => (

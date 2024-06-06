@@ -38,7 +38,6 @@ export const NoteEditModal = ({isOpen, onOpen, onClose, note= null}) => {
       else {
         await updateNote(entryId, note.id, { description: noteDescription })
       }
-      setNoteDescription('')
   };
 
   return (

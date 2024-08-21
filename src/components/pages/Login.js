@@ -3,6 +3,7 @@ import axios from "axios";
 import {useState} from "react";
 import {Navigate} from 'react-router-dom';
 import {API_LOGIN_URL} from "../constants/Urls";
+import {Box, Button, Flex, Input, Stack} from "@chakra-ui/react";
 
 export const LoginPage = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,18 +28,16 @@ export const LoginPage = () => {
   }
 
   return (
-      <div className="container-md">
+    <Flex justify="center" align="center" h="100vh">
+      <Stack spacing={3}>
         <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-            <input type="email" className="form-control" name="username" required></input>
-          </div>
-          <div className="mb-3">
-            <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-            <input type="password" className="form-control" name="password" required></input>
-          </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
+            <Input  size='lg' mb={3} variant='outline' type="email" placeholder='Email' name="username" required/>
+            {/*<input type="email" className="form-control" name="username" required></input>*/}
+            <Input size='lg' mb={5} variant='outline' type="password" placeholder='Password' name="password" required/>
+            {/*<input type="password" className="form-control" name="password" required></input>*/}
+            <Button size='lg' type="submit" className="btn btn-primary">Submit</Button>
         </form>
-      </div>
+      </Stack>
+    </Flex>
   )
 };

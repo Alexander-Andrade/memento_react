@@ -14,7 +14,19 @@ const config = {
       600: COLOR_DARK,
       900: COLOR_DARKER,
     },
-  }
+  },
+  // components: {
+  //   Modal: {
+  //     baseStyle: {
+  //       dialog: {
+  //         zIndex: -10, // Adjust this value to your desired z-index
+  //       },
+  //       overlay: {
+  //         zIndex: -20, // Adjust this value to your desired z-index
+  //       },
+  //     },
+  //   },
+  // },
 }
 
 // 2. Call `extendTheme` and pass your custom values

@@ -16,6 +16,8 @@ import {NoteEditModal} from "./NoteEditModal";
 import {PreviewModal} from "../../../PreviewModal";
 import {formatMinimized} from "../../../../helpers/TextMinimizer";
 import {useShallow} from "zustand/react/shallow";
+import {FilePanel} from "../../../google_drive_picker/FilePanel";
+import React from "react";
 
 export const NoteDetail = ({note}) => {
   const editDisclosure = useDisclosure()
@@ -49,6 +51,9 @@ export const NoteDetail = ({note}) => {
           <IconButton onClick={editDisclosure.onOpen} mr={4} colorScheme='teal' variant='ghost' aria-label='Edit note' size='lg' icon={<EditIcon />}/>
           <NoteEditModal isOpen={editDisclosure.isOpen} onOpen={editDisclosure.onOpen} onClose={editDisclosure.onClose} note={note}/>
           <IconButton onClick={deleteDisclosure.onOpen} colorScheme='teal' variant='ghost' aria-label='Edit note' size='lg' icon={<DeleteIcon />}/>
+          {/*<FilePanel*/}
+          {/*    onFilesSelected={() => {}}*/}
+          {/*  />*/}
           <DeleteModal
             key={`notes-delete-modal-${note.id}`}
             clickFunc={()=> deleteNote(note.entry_id, note.id)}

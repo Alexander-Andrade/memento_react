@@ -63,7 +63,7 @@ export const EntityDetail = () => {
   return (
     <Card bg={COLOR_DARKER} width='30vw' height='96vh' className='scrollable'>
       <CardHeader className='item-with-hidden-buttons'>
-        <Heading fontSize='2xl' color={COLOR_LIGHTER}>{entry.title} <Text class='timestamp' color={COLOR_LIGHT}>{formatDateTime(entry.created_at)} </Text></Heading>
+        <Heading fontSize='2xl' color={COLOR_LIGHTER}>{entry.title} <Text className='timestamp' color={COLOR_LIGHT}>{formatDateTime(entry.created_at)} </Text></Heading>
 
         <Flex style={{width: '140px'}} justifyContent="flex-end" className="hover-buttons">
               <IconButton onClick={previewDisclosure.onOpen} mr={4} colorScheme='teal' variant='ghost' aria-label='View entry' size='lg' icon={<QuestionIcon />}/>

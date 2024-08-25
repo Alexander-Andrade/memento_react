@@ -1,12 +1,11 @@
 import {googleClientId, googleDeveloperKey} from "../../helpers/GoogleCreds";
-import {Button, HStack, Tag, TagCloseButton, TagLabel, Text} from "@chakra-ui/react";
+import {Button, HStack, Link, Tag, TagCloseButton, TagLabel, Text} from "@chakra-ui/react";
 import React, {useEffect, useRef, useState} from "react";
 import useDrivePicker from "react-google-drive-picker";
 import GoogleAuthCacher from "./auth_cacher";
 
-export const FilePanel = ({onFilesSelected, onFileDeleted}) => {
+export const FilePanel = ({onFilesSelected, files = [], onFileDeleted }) => {
   const [openPicker, authResponse] = useDrivePicker();
-    const [pickerOpened, setPickerOpened] = useState(false);
 
   useEffect(() => {
     new GoogleAuthCacher(authResponse).call()
@@ -29,23 +28,6 @@ export const FilePanel = ({onFilesSelected, onFileDeleted}) => {
         callbackFunction: (data) => {
           console.log(data)
           if (data.action === 'loaded') {
-            document.querySelector('iframe.picker-frame').focus()
-            // const intervalId = setInterval(() => {
-            //     if(document.activeElement === document.querySelector('iframe.picker-frame')) {
-            //       console.log('stop focusing')
-            //       clearInterval(intervalId);
-            //     }
-            //
-            //     const prevModal = document.querySelector('.chakra-modal__content-container')
-            //     // prevModal.style.pointerEvents = 'none'
-            //     prevModal.blur()
-            //
-            //     const pickerIframe = document.querySelector('iframe.picker-frame');
-            //     if (pickerIframe) {
-            //       console.log('focused')
-            //       pickerIframe.focus();
-            //     }
-            // }, 10);
           }
           if (data.action === 'picked') {
             onFilesSelected(data.docs)
@@ -59,16 +41,22 @@ export const FilePanel = ({onFilesSelected, onFileDeleted}) => {
          <Button onClick={() => handleOpenPicker()}>
           File Picker
          </Button>
+        {files.map((file, index) => (
           <Tag
+            key={`file-tag-${file.id}`}
             size={'lg'}
             borderRadius='full'
             variant='solid'
             colorScheme='teal'
           >
-            <TagLabel>Green</TagLabel>
-            <Text>{document.activeElement.className}</Text>
+            <TagLabel>
+              <Link href={file.url}>
+              {file.name}
+              </Link>
+            </TagLabel>
             <TagCloseButton />
           </Tag>
+          ))}
       </HStack>
     )
 }

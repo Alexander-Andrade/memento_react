@@ -20,6 +20,7 @@ import {FilePanel} from "../../../google_drive_picker/FilePanel";
 
 export const NoteEditModal = ({isOpen, onOpen, onClose, note= null}) => {
   const [noteDescription, setNoteDescription] = useState('');
+  const [files, setFiles] = useState([]);
   const entryId = useEntriesStore((state) => state.selectedId)
   const { createNote, updateNote } = useNotesStore(
     useShallow((state) => ({ updateNote: state.update, createNote: state.create })),
@@ -28,16 +29,20 @@ export const NoteEditModal = ({isOpen, onOpen, onClose, note= null}) => {
   useEffect(() => {
     if(note != null) {
       setNoteDescription(note.description)
+      setFiles(note.files)
     }
   }, [note]);
 
   const onClick = async () => {
-      onClose()
-      if(note == null){
-        await createNote(entryId, { description: noteDescription })
+    onClose()
+
+    const data = { description: noteDescription, files: JSON.stringify(files) }
+
+    if(note == null){
+        await createNote(entryId, data)
       }
       else {
-        await updateNote(entryId, note.id, { description: noteDescription })
+        await updateNote(entryId, note.id, data)
       }
   };
   const onFilesSelected = (docs) => {
@@ -46,6 +51,7 @@ export const NoteEditModal = ({isOpen, onOpen, onClose, note= null}) => {
        links += `\n[${doc.name}](${doc.url})`
     }
     setNoteDescription(noteDescription + links)
+    setFiles([...files, ...docs])
   }
 
   return (
@@ -60,6 +66,7 @@ export const NoteEditModal = ({isOpen, onOpen, onClose, note= null}) => {
             </FormControl>
             <FilePanel
               onFilesSelected={onFilesSelected}
+              files={files}
             />
           </ModalBody>
 

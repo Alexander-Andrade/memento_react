@@ -9,7 +9,7 @@ export const fetchNotes = (entryId) => {
 export const createNote = (entryId, data) => {
    let authHeader =  getAuthHeader()
    const headers = { ...authHeader, 'Content-Type': 'multipart/form-data' }
-   console.log(`${process.env.REACT_APP_API_BASE_URL}/api/entries/${entryId}/notes/`)
+
    return axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/entries/${entryId}/notes/`, data, { headers })
 }
 

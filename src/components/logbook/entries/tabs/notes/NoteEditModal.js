@@ -54,6 +54,10 @@ export const NoteEditModal = ({isOpen, onOpen, onClose, note= null}) => {
     setFiles([...files, ...docs])
   }
 
+  const onFileDeleted = (index) => {
+    setFiles(files.filter((_, ind) => ind !== index))
+  }
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} size='80em' trapFocus={false}>
       <ModalOverlay zIndex='10'/>
@@ -66,6 +70,7 @@ export const NoteEditModal = ({isOpen, onOpen, onClose, note= null}) => {
             </FormControl>
             <FilePanel
               onFilesSelected={onFilesSelected}
+              onFileDeleted={onFileDeleted}
               files={files}
             />
           </ModalBody>

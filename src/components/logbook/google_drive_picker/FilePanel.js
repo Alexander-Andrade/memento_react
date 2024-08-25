@@ -26,7 +26,6 @@ export const FilePanel = ({onFilesSelected, files = [], onFileDeleted }) => {
         // setParentFolder: 'Memento',
         // customViews: customViewsArray, // custom view
         callbackFunction: (data) => {
-          console.log(data)
           if (data.action === 'loaded') {
           }
           if (data.action === 'picked') {
@@ -54,7 +53,7 @@ export const FilePanel = ({onFilesSelected, files = [], onFileDeleted }) => {
               {file.name}
               </Link>
             </TagLabel>
-            <TagCloseButton />
+            <TagCloseButton onClick={() => onFileDeleted(index)} />
           </Tag>
           ))}
       </HStack>

@@ -17,6 +17,7 @@ import "../../../../../css/Modal.css"
 import {useNotesStore} from "../../../../store/Notes";
 import { useShallow } from 'zustand/react/shallow'
 import {FilePanel} from "../../../google_drive_picker/FilePanel";
+import {buildLinks} from "../../../../helpers/files/buildLinks";
 
 export const NoteEditModal = ({isOpen, onOpen, onClose, note= null}) => {
   const [noteDescription, setNoteDescription] = useState('');
@@ -46,16 +47,7 @@ export const NoteEditModal = ({isOpen, onOpen, onClose, note= null}) => {
       }
   };
   const onFilesSelected = (docs) => {
-    let links = ''
-    for (const doc of docs) {
-       links += `\n[${doc.name}](${doc.url})`
-    }
-    setNoteDescription(noteDescription + links)
-    setFiles([...files, ...docs])
-  }
-
-  const onFileDeleted = (index) => {
-    setFiles(files.filter((_, ind) => ind !== index))
+    setNoteDescription(noteDescription + buildLinks(docs))
   }
 
   return (
@@ -70,8 +62,8 @@ export const NoteEditModal = ({isOpen, onOpen, onClose, note= null}) => {
             </FormControl>
             <FilePanel
               onFilesSelected={onFilesSelected}
-              onFileDeleted={onFileDeleted}
               files={files}
+              setFiles={setFiles}
             />
           </ModalBody>
 

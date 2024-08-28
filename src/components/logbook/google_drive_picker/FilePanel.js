@@ -4,13 +4,21 @@ import React, {useEffect, useRef, useState} from "react";
 import useDrivePicker from "react-google-drive-picker";
 import GoogleAuthCacher from "./auth_cacher";
 
-export const FilePanel = ({onFilesSelected, files = [], onFileDeleted }) => {
+export const FilePanel = ({onFilesSelected, files = [], setFiles }) => {
   const [openPicker, authResponse] = useDrivePicker();
 
   useEffect(() => {
     new GoogleAuthCacher(authResponse).call()
   }, [authResponse]);
 
+  const onFileDeleted = (index) => {
+    setFiles(files.filter((_, ind) => ind !== index))
+  }
+
+  const onFilesSelectedCallback = (docs) => {
+    onFilesSelected(docs)
+    setFiles([...files, ...docs])
+  }
 
   const handleOpenPicker = () => {
     openPicker({
@@ -29,7 +37,7 @@ export const FilePanel = ({onFilesSelected, files = [], onFileDeleted }) => {
           if (data.action === 'loaded') {
           }
           if (data.action === 'picked') {
-            onFilesSelected(data.docs)
+            onFilesSelectedCallback(data.docs)
           }
         },
       })

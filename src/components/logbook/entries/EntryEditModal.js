@@ -13,6 +13,8 @@ import React, {useEffect, useState} from "react";
 import MDEditor from "@uiw/react-md-editor";
 import './EntryEditModal.css';
 import {useShallow} from "zustand/react/shallow";
+import {FilePanel} from "../google_drive_picker/FilePanel";
+import {buildLinks} from "../../helpers/files/buildLinks";
 
 export const EntryEditModal = ({isOpen, onOpen, onClose}) => {
   // const initialRef = React.useRef(null)
@@ -31,19 +33,25 @@ export const EntryEditModal = ({isOpen, onOpen, onClose}) => {
 
   const [entryDescription, setEntryDescription] = useState('');
   const [entryTitle, setEntryTitle] = useState('');
+  const [files, setFiles] = useState([]);
 
   useEffect(() => {
     if(entry != null) {
       setEntryDescription(entry.description)
       setEntryTitle(entry.title)
+      setFiles(entry.files)
     }
   }, [entry]);
 
   const onClick = async () => {
       onClose()
-      await updateEntry(entry.topic_id, entry.id, { title: entryTitle, description: entryDescription })
+      await updateEntry(entry.topic_id, entry.id, { title: entryTitle, description: entryDescription, files: JSON.stringify(files) })
       storeEntry(entry.topic_id, entry.id)
     };
+
+  const onFilesSelected = (docs) => {
+    setEntryDescription(entryDescription + buildLinks(docs))
+  }
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size='80em' >
@@ -60,6 +68,11 @@ export const EntryEditModal = ({isOpen, onOpen, onClose}) => {
               <FormLabel color='memento.600'>Description</FormLabel>
               <MDEditor height='100%' value={entryDescription} onChange={setEntryDescription} autoFocus={true}/>
             </FormControl>
+            <FilePanel
+              onFilesSelected={onFilesSelected}
+              files={files}
+              setFiles={setFiles}
+            />
           </ModalBody>
 
           <ModalFooter>

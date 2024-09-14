@@ -54,9 +54,9 @@ export const EntryEditModal = ({isOpen, onOpen, onClose}) => {
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size='80em' >
-      <ModalOverlay />
-        <ModalContent w="1900px">
+    <Modal isOpen={isOpen} onClose={onClose} size='80em' trapFocus={false}>
+      <ModalOverlay zIndex='10'/>
+        <ModalContent w="1900px" containerProps={{zIndex: '20'}}>
           <ModalHeader>Edit {entry?.title}</ModalHeader>
           <ModalCloseButton size='lg'/>
           <ModalBody>
